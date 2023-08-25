@@ -1,19 +1,66 @@
-plugins {
-    id 'java'
+buildscript{
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath('net.serenity-bdd:serenity-gradle-plugin:3.3.2')
+        classpath('net.serenity-bdd:serenity-single-page-report:3.3.2')
+    }
 }
 
-group 'org.example'
+plugins {
+    id 'com.github.sherter.google-java-format' version '0.9'
+}
+
+group 'com.demoblaze.challenge'
+description = 'Test for UBITS'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+    jcenter()
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.serenity-gradle-plugin'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+ext{
+    serenityVersion = '3.6.21'
+    lombokVersion = '1.18.24'
+}
+
+serenity {
+    reports = ["single-page-html"]
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.9.1'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.7'
+    implementation 'com.google.googlejavaformat:google-java-format:1.16.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.14.2'
+    implementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-reports:$rootProject.ext.serenityVersion"
+    annotationProcessor "org.projectlombok:lombok:$rootProject.ext.lombokVersion"
 }
 
-test {
-    useJUnitPlatform()
-}
+gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)
