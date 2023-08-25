@@ -5,6 +5,9 @@ import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.conditions.Check;
+import net.serenitybdd.screenplay.targets.Target;
+
+import java.time.Duration;
 
 import static com.demoblaze.challenge.userinterfaces.StaticMenu.*;
 import static com.demoblaze.challenge.utils.Wait.stopExecution;
@@ -24,6 +27,7 @@ public class AddProductToCart implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
+        PRODUCT_CARD.of(productName).resolveFor(actor).setImplicitTimeout(Duration.ofSeconds(2));
         actor.attemptsTo(
                 Check.whether(!PRODUCT_CARD.of(productName).resolveFor(actor).isCurrentlyVisible())
                         .andIfSo(Click.on(NEXT_BUTTON)),
