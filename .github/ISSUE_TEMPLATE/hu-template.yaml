@@ -1,0 +1,17 @@
+name: 🦾 HU Template
+description: Template for HU creation
+title: "[HU] - <title>"
+labels: [HU]
+body:
+- type: textarea
+  attributes:
+    label: Description of HU
+  validations:
+    required: true
+    
+- type: input
+  attributes:
+    label: Tentative delivery date
+    placeholder: "Ejem: 20/05/2023"
+  validations:
+    required: true
