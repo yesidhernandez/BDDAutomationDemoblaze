@@ -7,10 +7,10 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import org.openqa.selenium.WebDriver;
 
 public class Hooks {
-    WebDriver hisBrowser;
+  WebDriver hisBrowser;
 
-    @Before
-    public void setStage() {
-        OnStage.setTheStage(Cast.whereEveryoneCan(BrowseTheWeb.with(hisBrowser)));
-    }
+  @Before
+  public void setStage() {
+    OnStage.setTheStage(Cast.whereEveryoneCan(BrowseTheWeb.with(hisBrowser)));
+  }
 }

@@ -6,8 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum ActorNotepad {
-    FULL_PURCHASE_PRICE("Full purchase price"),
-    PRODUCT_PRICE("Product price");
+  FULL_PURCHASE_PRICE("Full purchase price"),
+  PRODUCT_PRICE("Product price");
 
-    private final String value;
+  private final String value;
 }
