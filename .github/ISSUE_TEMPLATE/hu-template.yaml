@@ -1,7 +1,9 @@
 name: 🦾 User History Template
 description: Template for creating a user history
 title: "[HU] - <Título de la historia de usuario>"
-labels: [HU]
+labels: ["enhancement"]
+assignees:
+  - yesidhernandez
 body:
 - type: textarea
   attributes:
