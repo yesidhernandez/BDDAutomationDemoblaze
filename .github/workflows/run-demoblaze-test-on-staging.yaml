@@ -1,13 +1,13 @@
 name: Run demoblaze test on staging environment
 on:
-  push:
-    branches:
-      - feature/CreateMyFirstAction
+  schedule:
+    - cron: '00 15 * * 6,0'
 
 jobs:
   execute-test:
     name: Execute test Automated
-    runs-on: [ self-hosted ]
+    runs-on: [ self-hosted, ubuntu-latest ]
+    timeout-minutes: 90
 
     steps:
       - name: Get current date
@@ -32,6 +32,19 @@ jobs:
           java-version: '11'
           java-package: jdk
 
+      - name: Download Chrome
+        run: |
+          sudo apt-get install unzip
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt --fix-broken install -y ./google-chrome-stable_current_amd64.deb
+          CHROME_VERSION=$(google-chrome --version | sed 's/Google Chrome //' | sed 's/ //')
+          echo $CHROME_VERSION
+          wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROME_VERSION/linux64/chromedriver-linux64.zip
+          unzip chromedriver-linux64.zip -d "${GITHUB_WORKSPACE}"
 
-
-
+      - name: Execute Tests
+        id: gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: clean test --tests BuyItemsInDemoblazeRunner aggregate -i
+          gradle-version: 7.0.2
