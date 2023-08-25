@@ -1,0 +1,29 @@
+package com.demoblaze.challenge.questions;
+
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.Question;
+
+public class TheTotalPricePaidForThePurchase implements Question<Integer> {
+    public static TheTotalPricePaidForThePurchase is() {
+        return new TheTotalPricePaidForThePurchase();
+    }
+
+    @Override
+    public Integer answeredBy(Actor actor) {
+        final String amount = "Amount";
+        String valueToEvaluate = EMPTY_TEXT_STRING.getValue();
+        String paymentDetailsParagraph = PAYMENT_DETAILS_PARAGRAPH.resolveFor(actor).getText();
+
+        String[] paragraphLines = paymentDetailsParagraph.split(LINE_BREAK.getValue());
+
+        for (String paragraphLine : paragraphLines) {
+            if (paragraphLine.startsWith(amount)) {
+                String[] lineToEvaluate = paragraphLine.split(COLON.getValue());
+                valueToEvaluate = removeLettersAndSpecialCharacters(lineToEvaluate[1]);
+                break;
+            }
+        }
+
+        return Integer.parseInt(valueToEvaluate);
+    }
+}
