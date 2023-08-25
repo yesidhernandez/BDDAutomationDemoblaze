@@ -1,17 +1,20 @@
 name: 🐞 Bug Template
 description: Template for creating a bug
-title: "[BUG] - Título del bug"
-labels: ["Bug", "To fix"]
+title: "[BUG] - <Título del bug>"
+labels: [Bug, To fix]
+projects: [yesidhernandez/BDDAutomationDemoblaze]
 assignees:
   - yesidhernandez
 body:
   - type: markdown
     attributes:
       value: |
-        Gracias por tomarte el tiempo de reportar este error en el aplicativo!
+        Gracias por tomarte el tiempo de reportar este error en el aplicativo. 
+        Intentaré solucionarlo en el menor tiempo posible.
+
   - type: textarea
     attributes:
-      label: Descripción
+      label: Descripción del error
 
   - type: dropdown
     attributes:
@@ -40,3 +43,12 @@ body:
   - type: textarea
     attributes:
       label: Evidencias o paso a paso para replicar el error
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Términos y condiciones
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

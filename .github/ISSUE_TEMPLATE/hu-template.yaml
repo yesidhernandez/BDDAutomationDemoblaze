@@ -1,17 +1,23 @@
-name: 🦾 HU Template
-description: Template for HU creation
-title: "[HU] - <title>"
+name: 🦾 User History Template
+description: Template for creating a user history
+title: "[HU] - <Título de la historia de usuario>"
 labels: [HU]
 body:
 - type: textarea
   attributes:
-    label: Description of HU
+    label: Descripción de la historia de usuario
   validations:
     required: true
+
+- type: input
+  attributes:
+    label: Recomendaciones
+  validations:
+    required: false
     
 - type: input
   attributes:
-    label: Tentative delivery date
-    placeholder: "Ejem: 20/05/2023"
+    label: Fecha de entrega tentativa
+    placeholder: "Ejemplo: 20/05/2023"
   validations:
     required: true
