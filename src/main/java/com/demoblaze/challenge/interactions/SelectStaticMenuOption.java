@@ -3,6 +3,7 @@ package com.demoblaze.challenge.interactions;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 
+import static com.demoblaze.challenge.userinterfaces.StaticMenu.STATIC_MENU;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class SelectStaticMenuOption implements Interaction {

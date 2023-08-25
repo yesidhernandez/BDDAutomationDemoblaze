@@ -1,10 +1,12 @@
 package com.demoblaze.challenge.tasks;
 
+import com.demoblaze.challenge.models.Payer;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 
+import static com.demoblaze.challenge.userinterfaces.PayerForm.*;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class FillOutPayerInformation implements Task {

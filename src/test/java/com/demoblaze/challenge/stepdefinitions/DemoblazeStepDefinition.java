@@ -1,6 +1,11 @@
 package com.demoblaze.challenge.stepdefinitions;
 
+import com.demoblaze.challenge.exceptions.UnexpectedValueError;
 import com.demoblaze.challenge.models.Product;
+import com.demoblaze.challenge.questions.TheTotalPricePaidForThePurchase;
+import com.demoblaze.challenge.tasks.AuthenticateToDemoblaze;
+import com.demoblaze.challenge.tasks.PlaceOrder;
+import com.demoblaze.challenge.tasks.SelectProductsForPurchase;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.demoblaze.challenge.utils.enums.ActorNotepad.FULL_PURCHASE_PRICE;
+import static com.demoblaze.challenge.utils.enums.ErrorMessages.WRONG_PRICE_ERROR;
 import static com.demoblaze.challenge.utils.enums.Resources.DEMOBLAZE_URL;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;

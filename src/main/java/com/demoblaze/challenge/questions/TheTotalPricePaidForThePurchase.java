@@ -3,6 +3,10 @@ package com.demoblaze.challenge.questions;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 
+import static com.demoblaze.challenge.userinterfaces.PaymentForm.PAYMENT_DETAILS_PARAGRAPH;
+import static com.demoblaze.challenge.utils.StringFormats.removeLettersAndSpecialCharacters;
+import static com.demoblaze.challenge.utils.enums.StringConstants.*;
+
 public class TheTotalPricePaidForThePurchase implements Question<Integer> {
     public static TheTotalPricePaidForThePurchase is() {
         return new TheTotalPricePaidForThePurchase();

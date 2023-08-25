@@ -6,7 +6,9 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.conditions.Check;
 
+import static com.demoblaze.challenge.userinterfaces.StaticMenu.*;
 import static com.demoblaze.challenge.utils.Wait.stopExecution;
+import static com.demoblaze.challenge.utils.enums.MainMenu.HOME;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class AddProductToCart implements Interaction {

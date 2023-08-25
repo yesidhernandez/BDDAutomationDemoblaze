@@ -1,9 +1,12 @@
 package com.demoblaze.challenge.tasks;
 
+import com.demoblaze.challenge.interactions.SelectStaticMenuOption;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 
+import static com.demoblaze.challenge.userinterfaces.StaticMenu.PLACE_ORDER_BUTTON;
+import static com.demoblaze.challenge.utils.enums.MainMenu.CART;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class PlaceOrder implements Task {

@@ -1,5 +1,6 @@
 package com.demoblaze.challenge.tasks;
 
+import com.demoblaze.challenge.interactions.SelectStaticMenuOption;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -8,6 +9,8 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.util.Map;
 
+import static com.demoblaze.challenge.userinterfaces.StaticMenu.*;
+import static com.demoblaze.challenge.utils.enums.MainMenu.LOG_IN;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
