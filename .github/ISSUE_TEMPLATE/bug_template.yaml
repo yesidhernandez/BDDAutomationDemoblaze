@@ -1,7 +1,7 @@
 name: 🐞 Bug Template
 description: Template for creating a bug
 title: "[BUG] - <Título del bug>"
-labels: [Bug]
+labels: [bug,invalid]
 assignees:
   - yesidhernandez
 body:
