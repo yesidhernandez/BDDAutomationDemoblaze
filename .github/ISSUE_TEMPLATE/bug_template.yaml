@@ -1,8 +1,7 @@
 name: 🐞 Bug Template
 description: Template for creating a bug
 title: "[BUG] - <Título del bug>"
-labels: [Bug, To fix]
-projects: [yesidhernandez/BDDAutomationDemoblaze]
+labels: [Bug]
 assignees:
   - yesidhernandez
 body:
@@ -39,6 +38,8 @@ body:
       options:
         - Staging
         - Producción
+    validations:
+      required: true
 
   - type: textarea
     attributes:
@@ -48,7 +49,7 @@ body:
     id: terms
     attributes:
       label: Términos y condiciones
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      description: Para reportar este error, debes aceptar los siguientes [Términos y condiciones](https://example.com)
       options:
-        - label: I agree to follow this project's Code of Conduct
+        - label: Aceptar términos y condiciones
           required: true
