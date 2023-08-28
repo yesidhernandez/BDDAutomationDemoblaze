@@ -2,7 +2,7 @@ name: Run demoblaze test on staging environment
 on:
   push:
     branches:
-      - feature/YamlTest
+      - feature/ConfigurarLoginSecrets
 #  schedule:
 #    - cron: '00 15 * * 6,0'
 
@@ -53,5 +53,5 @@ jobs:
         id: gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: clean test --tests BuyItemsInDemoblazeRunner aggregate -i
+          arguments: clean test --tests BuyItemsInDemoblazeRunner aggregate -i -Ddemoblaze.username=${{ secrets.DEMOBLAZE_USERNAME }} -Ddemoblaze.password=${{ secrets.DEMOBLAZE_PASSWORD }}
           gradle-version: 7.0.2
