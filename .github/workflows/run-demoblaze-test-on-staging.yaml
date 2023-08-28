@@ -1,12 +1,15 @@
 name: Run demoblaze test on staging environment
 on:
-  schedule:
-    - cron: '00 15 * * 6,0'
+  push:
+    branches:
+      - feature/YamlTest
+#  schedule:
+#    - cron: '00 15 * * 6,0'
 
 jobs:
   execute-test:
     name: Execute test Automated
-    runs-on: [ self-hosted, ubuntu-latest ]
+    runs-on: ubuntu-latest
     timeout-minutes: 90
 
     steps:
