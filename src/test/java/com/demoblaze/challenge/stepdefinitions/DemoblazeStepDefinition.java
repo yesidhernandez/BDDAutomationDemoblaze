@@ -33,9 +33,10 @@ public class DemoblazeStepDefinition {
     theActorCalled(actor).wasAbleTo(Open.url(DEMOBLAZE_URL.getValue()));
   }
 
-  @Given("he/she/it accesses the demoblaze page with the following credentials")
-  public void demoblazePageAuthentication(Map<String, String> credentials) {
-    theActorInTheSpotlight().attemptsTo(AuthenticateToDemoblaze.withCredentials(credentials));
+  @Given("he/she/it accesses the demoblaze page using user defined credentials")
+  public void demoblazePageAuthentication() {
+    theActorInTheSpotlight()
+        .attemptsTo(AuthenticateToDemoblaze.usingCredentialsDefinedAsEnvironmentVariables());
   }
 
   @When("he/she/it selects the following products for purchase")

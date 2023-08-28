@@ -3,11 +3,9 @@ Feature: Make purchase on demoblaze.
   I want to make purchase on demoblaze
   To ensure that demoblaze page works correctly
 
-  Scenario Outline: Make purchase on demoblaze.
+  Scenario: Make purchase on demoblaze.
     Given that Yesid opens the demoblaze page in the browser
-    And he accesses the demoblaze page with the following credentials
-      | user     | <user>     |
-      | password | <password> |
+    And he accesses the demoblaze page using user defined credentials
     When he selects the following products for purchase
       | category | name             |
       | Phones   | Sony xperia z5   |
@@ -16,7 +14,3 @@ Feature: Make purchase on demoblaze.
       | Laptops  | MacBook air      |
     And he places the order
     Then he should see that the payment made corresponds to the value of the selected items
-
-    Examples:
-      | user   | password |
-      | prueba | prueba   |

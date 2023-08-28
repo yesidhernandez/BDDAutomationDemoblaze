@@ -62,5 +62,10 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:$rootProject.ext.lombokVersion"
 }
 
+test {
+    systemProperty "demoblaze.username", System.getProperty("demoblaze.username")
+    systemProperty "demoblaze.password", System.getProperty("demoblaze.password")
+}
+
 gradle.startParameter.continueOnFailure = true
 test.finalizedBy(aggregate)
