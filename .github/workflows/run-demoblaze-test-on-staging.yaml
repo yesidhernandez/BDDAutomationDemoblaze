@@ -35,15 +35,26 @@ jobs:
           java-version: '11'
           java-package: jdk
 
-      - name: Download Chrome
+      - name: Download Google Chrome
         run: |
           sudo apt-get install unzip
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt --fix-broken install -y ./google-chrome-stable_current_amd64.deb
+#          CHROME_VERSION=$(google-chrome --version | sed 's/Google Chrome //' | sed 's/ //')
+#          echo $CHROME_VERSION
+#          wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROME_VERSION/linux64/chromedriver-linux64.zip
+#          unzip chromedriver-linux64.zip -d "${GITHUB_WORKSPACE}"
+
+      - name: Download Chrome Driver
+        run: |
+#          sudo apt-get install unzip
+#          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#          sudo apt --fix-broken install -y ./google-chrome-stable_current_amd64.deb
           CHROME_VERSION=$(google-chrome --version | sed 's/Google Chrome //' | sed 's/ //')
           echo $CHROME_VERSION
           wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROME_VERSION/linux64/chromedriver-linux64.zip
           unzip chromedriver-linux64.zip -d "${GITHUB_WORKSPACE}"
+          echo $GITHUB_WORKSPACE
 
       - name: Execute Tests
         id: gradle
