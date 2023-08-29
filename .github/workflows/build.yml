@@ -1,4 +1,4 @@
-name: SonarCloud
+name: CI - Compile and analyze SonarCloud
 on:
   push:
     branches:
@@ -40,7 +40,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           chmod +x gradlew
-          ./gradlew compileJava sonarqube --info     
-        
-
-        #run: ./gradlew build sonar --info
+          ./gradlew build sonar --info
