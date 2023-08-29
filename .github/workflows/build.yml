@@ -47,4 +47,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew compileJava sonarqube --info      #run: ./gradlew build sonar --info
+        run: |
+          chmod +x gradlew
+          ./gradlew compileJava sonarqube --info     
+        
+
+        #run: ./gradlew build sonar --info
