@@ -2,7 +2,8 @@ name: Run demoblaze test on staging environment
 on:
   push:
     branches:
-      - feature/ConfigurarLoginSecrets
+      - feature/ConnectionWithAWS
+
 #  schedule:
 #    - cron: '00 15 * * 6,0'
 
@@ -10,6 +11,12 @@ jobs:
   execute-test:
     name: Execute test Automated
     runs-on: ubuntu-latest
+    env:
+      REPORT_BUCKET_NAME: "yh-automation"
+    permissions:
+      id-token: write
+      contents: read
+      actions: write
     timeout-minutes: 90
 
     steps:
@@ -43,9 +50,7 @@ jobs:
 
       - name: Download Chrome Driver
         run: |
-          CHROME_VERSION=$(google-chrome --version | sed 's/Google Chrome //' | sed 's/ //')
-          echo $CHROME_VERSION
-          wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROME_VERSION/linux64/chromedriver-linux64.zip
+          wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip
           unzip chromedriver-linux64.zip -d "${GITHUB_WORKSPACE}"
           echo $GITHUB_WORKSPACE
 
@@ -55,3 +60,21 @@ jobs:
         with:
           arguments: clean test --tests BuyItemsInDemoblazeRunner aggregate -i -Ddemoblaze.username=${{ secrets.DEMOBLAZE_USERNAME }} -Ddemoblaze.password=${{ secrets.DEMOBLAZE_PASSWORD }}
           gradle-version: 7.0.2
+
+      - name: Configure AWS Credentials
+        if: always()
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::027413275407:role/github_lab
+
+      - name: Copy Serenity Report AWS CLI
+        if: always()
+        id: serenity_report
+        env:
+          VALIDATOR_PDP_PROJECTS_PRODUCTION_PATH: "demoblaze"
+        run: |
+          serenity_path="serenity-$(date +%Y.%m.%d-%H.%M.%S)"
+          mv target/site/serenity target/site/$serenity_path
+          aws s3 sync target/site/ s3://$REPORT_BUCKET_NAME/$VALIDATOR_PDP_PROJECTS_PRODUCTION_PATH
+          echo "url=https://$REPORT_BUCKET_NAME.s3.amazonaws.com/$VALIDATOR_PDP_PROJECTS_PRODUCTION_PATH/$serenity_path/index.html" >> $GITHUB_OUTPUT
