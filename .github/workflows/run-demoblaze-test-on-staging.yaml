@@ -1,11 +1,12 @@
 name: Run demoblaze test on staging environment
 on:
+  schedule:
+    - cron: '00 15 15 08 *'
   push:
     branches:
-      - feature/ConnectionWithAWS
-
-#  schedule:
-#    - cron: '00 15 * * 6,0'
+      - feature/ThisFeatureIsAnExample
+  repository_dispatch:
+    types: [ run-demoblaze-scenarios-on-staging ]
 
 jobs:
   execute-test:
@@ -50,7 +51,9 @@ jobs:
 
       - name: Download Chrome Driver
         run: |
-          wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip
+          CHROME_VERSION=$(google-chrome --version | sed 's/Google Chrome //' | sed 's/ //')
+          echo $CHROME_VERSION
+          wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROME_VERSION/linux64/chromedriver-linux64.zip
           unzip chromedriver-linux64.zip -d "${GITHUB_WORKSPACE}"
           echo $GITHUB_WORKSPACE
 
