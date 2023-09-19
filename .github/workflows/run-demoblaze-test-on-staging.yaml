@@ -4,7 +4,7 @@ on:
     - cron: '00 15 15 08 *'
   push:
     branches:
-      - feature/TestCharge
+      - feature/TestBranch
   repository_dispatch:
     types: [ run-demoblaze-scenarios-on-staging ]
 
@@ -71,7 +71,7 @@ jobs:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::027413275407:role/github_lab
 
-#      Esta tarea funciona perfectamente pero se comenta para evitar cobros de AWS.
+#        Esta tarea funciona perfectamente pero se comenta para evitar cobros de AWS.
 #      - name: Copy Serenity Report AWS CLI
 #        if: always()
 #        id: serenity_report
