@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - feature/ThisIsAnExample
+
   repository_dispatch:
     types: [ run-demoblaze-scenarios-on-staging ]
 
