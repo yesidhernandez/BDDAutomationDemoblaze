@@ -71,6 +71,7 @@ jobs:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::027413275407:role/github_lab
 
+#      Esta tarea funciona perfectamente pero se comenta para evitar cobros de AWS.
 #      - name: Copy Serenity Report AWS CLI
 #        if: always()
 #        id: serenity_report
