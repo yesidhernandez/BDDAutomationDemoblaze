@@ -4,7 +4,7 @@ on:
     - cron: '00 15 15 08 *'
   push:
     branches:
-      - feature/ThisFeatureIsAnExample
+      - feature/ThisIsAnExample
   repository_dispatch:
     types: [ run-demoblaze-scenarios-on-staging ]
 
